@@ -1,0 +1,177 @@
+/* Custom RTL Styles */
+.sidebar {
+    right: 0;
+    left: auto;
+}
+
+.sidebar-main {
+    right: 0;
+    left: auto;
+}
+
+.navbar-expand-md .navbar-nav {
+    padding-right: 0;
+}
+
+.breadcrumb-line-light {
+    border-right: 0;
+    border-left: 1px solid rgba(0,0,0,.125);
+}
+
+.page-header-content {
+    text-align: right;
+}
+
+.form-group {
+    text-align: right;
+}
+
+.card .card-header {
+    text-align: right;
+}
+
+.table th, .table td {
+    text-align: right;
+}
+
+.dropdown-submenu > a:after {
+    float: left;
+    margin-right: .375rem;
+    margin-left: 0;
+}
+
+/* Fix for attendance tables */
+.attendance-table th, 
+.attendance-table td {
+    text-align: right;
+}
+
+.attendance-table .form-check {
+    padding-right: 1.75rem;
+    padding-left: 0;
+}
+
+.attendance-table .form-check-input {
+    margin-right: -1.75rem;
+    margin-left: 0;
+}
+
+/* Fix for datepickers */
+.datepicker {
+    direction: rtl;
+}
+
+.datepicker.dropdown-menu {
+    right: auto;
+}
+
+/* Fix for select2 */
+.select2-container--default .select2-selection--single {
+    text-align: right;
+}
+
+.select2-results {
+    text-align: right;
+}
+
+/* Fix for modal dialogs */
+.modal-header .close {
+    margin: -1rem auto -1rem -1rem;
+}
+
+.modal-footer {
+    justify-content: flex-start;
+}
+
+/* Fix for cards */
+.card-header .header-elements {
+    right: auto;
+    left: 1.25rem;
+}
+
+/* Fix for navigation */
+.nav-sidebar .nav-item-submenu > .nav-group-sub {
+    padding-right: 2.25rem;
+    padding-left: 0;
+}
+
+.nav-sidebar > .nav-item-submenu > .nav-group-sub {
+    padding-right: 2.25rem;
+    padding-left: 0;
+}
+
+/* Fix for form elements */
+.form-check-inline {
+    padding-right: 0;
+    margin-right: 0;
+    margin-left: .75rem;
+}
+
+.form-check-inline .form-check-input {
+    margin-right: 0;
+    margin-left: .3125rem;
+}
+
+/* Fix for buttons */
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn {
+    border-radius: 0 .1875rem .1875rem 0;
+}
+
+.btn-group > .btn:not(:first-child),
+.btn-group > .btn-group:not(:first-child) > .btn {
+    border-radius: .1875rem 0 0 .1875rem;
+}
+
+/* Fix for tabs */
+.nav-tabs {
+    padding-right: 0;
+}
+
+/* Fix for pagination */
+.pagination {
+    padding-right: 0;
+}
+
+/* Fix for breadcrumbs */
+.breadcrumb {
+    padding-right: 0;
+}
+
+/* Fix for alerts */
+.alert-dismissible {
+    padding-right: 1.25rem;
+    padding-left: 4rem;
+}
+
+.alert-dismissible .close {
+    right: auto;
+    left: 0;
+}
+
+/* Fix for badges */
+.badge {
+    margin-right: .25rem;
+    margin-left: 0;
+}
+
+/* Fix for lists */
+.list-inline {
+    padding-right: 0;
+}
+
+.list-inline-item:not(:last-child) {
+    margin-left: .5rem;
+    margin-right: 0;
+}
+
+/* Fix for input groups */
+.input-group > .custom-select:not(:last-child),
+.input-group > .form-control:not(:last-child) {
+    border-radius: 0 .1875rem .1875rem 0;
+}
+
+.input-group > .custom-select:not(:first-child),
+.input-group > .form-control:not(:first-child) {
+    border-radius: .1875rem 0 0 .1875rem;
+}

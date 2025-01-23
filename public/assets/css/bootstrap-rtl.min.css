@@ -1,0 +1,131 @@
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+.text-left {
+    text-align: right !important;
+}
+
+.text-right {
+    text-align: left !important;
+}
+
+.float-left {
+    float: right !important;
+}
+
+.float-right {
+    float: left !important;
+}
+
+.navbar-nav {
+    padding-right: 0;
+}
+
+.ml-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+.mr-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+.offset-1 {
+    margin-right: 8.333333%;
+    margin-left: 0;
+}
+
+.offset-2 {
+    margin-right: 16.666667%;
+    margin-left: 0;
+}
+
+.offset-3 {
+    margin-right: 25%;
+    margin-left: 0;
+}
+
+.offset-4 {
+    margin-right: 33.333333%;
+    margin-left: 0;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+}
+
+.dropdown-menu-right {
+    right: auto;
+    left: 0;
+}
+
+.list-unstyled {
+    padding-right: 0;
+}
+
+.input-group > .form-control {
+    border-radius: 0 .25rem .25rem 0;
+}
+
+.input-group-prepend {
+    margin-left: -1px;
+    margin-right: 0;
+}
+
+.input-group-append {
+    margin-right: -1px;
+    margin-left: 0;
+}
+
+.modal-header .close {
+    margin: -1rem auto -1rem -1rem;
+}
+
+.alert-dismissible {
+    padding-right: 1.25rem;
+    padding-left: 4rem;
+}
+
+.alert-dismissible .close {
+    right: auto;
+    left: 0;
+}
+
+.custom-control {
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+    right: -1.5rem;
+    left: auto;
+}
+
+.custom-select {
+    padding: .375rem .75rem .375rem 1.75rem;
+    background-position: left .75rem center;
+}
+
+.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .input-group-text,
+.input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > .input-group-text,
+.input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+    border-radius: 0 .25rem .25rem 0;
+}
+
+.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+    border-radius: .25rem 0 0 .25rem;
+}
