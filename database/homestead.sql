@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2025 at 01:43 AM
+-- Generation Time: Feb 10, 2025 at 05:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -188,7 +188,7 @@ CREATE TABLE `exam_records` (
 --
 
 INSERT INTO `exam_records` (`id`, `exam_id`, `student_id`, `my_class_id`, `section_id`, `total`, `ave`, `class_ave`, `pos`, `af`, `ps`, `p_comment`, `t_comment`, `year`, `created_at`, `updated_at`) VALUES
-(2, 3, 57, 9, 11, 652, '81.5', '81.5', 1, '1,1,1,1,1,1,1', '1,1,1,1,1,1,1', 'Keep going', 'the good one', '2024-2025', '2024-12-26 10:51:46', '2025-01-13 17:46:54');
+(2, 3, 57, 9, 11, 652, '81.5', '81.5', 1, '1,1,1,1,1,1,1', '1,1,1,1,1,1,1', 'Keep going', 'the good one', '2024-2025', '2024-12-26 10:51:46', '2025-02-09 03:53:09');
 
 -- --------------------------------------------------------
 
@@ -1425,6 +1425,60 @@ INSERT INTO `payment_records` (`id`, `payment_id`, `student_id`, `ref_no`, `amt_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
+(11, 'App\\Models\\User', 4, 'auth_token', '9c309281f0d0e83d5df33fdfde8e802987e2fa0cca52023414dc934590f3a0cb', '[\"*\"]', '2025-01-28 16:41:01', NULL, '2025-01-28 16:13:02', '2025-01-28 16:41:01'),
+(12, 'App\\Models\\User', 4, 'auth_token', '9b7b117d9abae021d0445c03ab0de2ab99d59e091c5fe804476d3a4da43a1717', '[\"*\"]', NULL, NULL, '2025-01-28 16:55:39', '2025-01-28 16:55:39'),
+(13, 'App\\Models\\User', 4, 'auth_token', 'c337a1db5e22b2e4223de63602ff4f7a65b0dcc08ee570040da213da7a2ed733', '[\"*\"]', NULL, NULL, '2025-01-28 17:05:17', '2025-01-28 17:05:17'),
+(14, 'App\\Models\\User', 4, 'auth_token', '3776a6aa4264129523d97e4647a46072cd3e82374a16cf8937c6eb16735c2a5d', '[\"*\"]', NULL, NULL, '2025-01-28 17:33:24', '2025-01-28 17:33:24'),
+(15, 'App\\Models\\User', 4, 'auth_token', '8df804f6d7e4360d0934016e6dae9cd04b9d7b5f3c5f9d69c9b9bed422c80855', '[\"*\"]', NULL, NULL, '2025-01-28 17:50:00', '2025-01-28 17:50:00'),
+(18, 'App\\Models\\User', 4, 'auth_token', '5a65b0aefd928b981a064464d873cca022356da26840796f7fbbf52b253a682a', '[\"*\"]', '2025-02-05 13:28:30', NULL, '2025-02-05 12:23:46', '2025-02-05 13:28:30'),
+(19, 'App\\Models\\User', 4, 'auth_token', '2d6d706a20078d2df2a3ae44ea6eec4a78050fb25fbd39edabd27d8cea572729', '[\"*\"]', NULL, NULL, '2025-02-05 13:33:08', '2025-02-05 13:33:08'),
+(20, 'App\\Models\\User', 4, 'auth_token', 'ed00f894c198557a76a1f1147646cce7b1830ab56f25578c074d78c4bc62a18b', '[\"*\"]', NULL, NULL, '2025-02-05 13:43:23', '2025-02-05 13:43:23'),
+(21, 'App\\Models\\User', 4, 'auth_token', '8eba75cb3aab9f0a93429ca5f604bdc972b8ec27f4211e2e315a513cb8bf3050', '[\"*\"]', '2025-02-05 14:45:09', NULL, '2025-02-05 14:12:28', '2025-02-05 14:45:09'),
+(22, 'App\\Models\\User', 4, 'auth_token', 'b8f8c4e837919e6056527bd936909a52fe5cad51e33fcac9056039b4f081d121', '[\"*\"]', NULL, NULL, '2025-02-06 15:19:51', '2025-02-06 15:19:51'),
+(23, 'App\\Models\\User', 4, 'auth_token', '13e991d6de7c6d1f0bca0c12130177c16b077d2ab0eb8288cb2318dd7a3f1bc2', '[\"*\"]', NULL, NULL, '2025-02-06 15:39:52', '2025-02-06 15:39:52'),
+(24, 'App\\Models\\User', 4, 'auth_token', '62c41582ad5542ef60b920785fd85c2ad8de4db9c9d5577bffd037a378fc3d9f', '[\"*\"]', NULL, NULL, '2025-02-06 16:38:33', '2025-02-06 16:38:33'),
+(25, 'App\\Models\\User', 4, 'auth_token', '61641ffb481d1e3381e1403885703e00a8a5945a54c747ecb4b757e0bc2a6880', '[\"*\"]', NULL, NULL, '2025-02-06 17:03:46', '2025-02-06 17:03:46'),
+(26, 'App\\Models\\User', 4, 'auth_token', '90237eb3073a65f318ee0c39300dcf8a45c4f0ec309a2d5fdf7eb0612cf63b81', '[\"*\"]', NULL, NULL, '2025-02-06 17:15:09', '2025-02-06 17:15:09'),
+(27, 'App\\Models\\User', 4, 'auth_token', '2e4d4c1561a9864b10eca17ff5eade16454ec6c17d4975ebe19d355a6017ca11', '[\"*\"]', '2025-02-06 18:03:17', NULL, '2025-02-06 18:02:21', '2025-02-06 18:03:17'),
+(28, 'App\\Models\\User', 4, 'auth_token', '1a798b51baa9d428fba51c9a59dcbea0dd21368f44b488030b8bda522891b301', '[\"*\"]', '2025-02-06 18:28:10', NULL, '2025-02-06 18:21:55', '2025-02-06 18:28:10'),
+(29, 'App\\Models\\User', 4, 'auth_token', 'f19edbf363eff76bc5d1523bae86d63e69369fe9e09781b22a9d0ab4bd1c345a', '[\"*\"]', '2025-02-06 18:30:53', NULL, '2025-02-06 18:30:43', '2025-02-06 18:30:53'),
+(30, 'App\\Models\\User', 4, 'auth_token', 'b8cc3dc2b159e108ea84d2b9e08ae001279d5c6317e5dbcd562c898bc648ab59', '[\"*\"]', '2025-02-07 16:25:40', NULL, '2025-02-07 16:25:24', '2025-02-07 16:25:40'),
+(31, 'App\\Models\\User', 4, 'auth_token', 'eba65c8974cd132b12ce2f857d16a3b13a0955778de6b4d127c0d0704a32faa4', '[\"*\"]', '2025-02-07 16:38:14', NULL, '2025-02-07 16:33:59', '2025-02-07 16:38:14'),
+(32, 'App\\Models\\User', 4, 'auth_token', '104578d72506d761620e60af562307b212241e59bd8c7b30c1df11e74b45c18d', '[\"*\"]', '2025-02-07 18:01:05', NULL, '2025-02-07 17:50:55', '2025-02-07 18:01:05'),
+(33, 'App\\Models\\User', 4, 'auth_token', '9cf8e15d3b227b223b6d6f68f1e17cfee907f987570dd8445ff480b98813df4c', '[\"*\"]', '2025-02-07 18:08:02', NULL, '2025-02-07 18:07:46', '2025-02-07 18:08:02'),
+(34, 'App\\Models\\User', 4, 'auth_token', '98672b2ef23f6ea6cd4e97e787ea1308534cbbf00f6daac8261706e653c8570e', '[\"*\"]', '2025-02-07 18:14:39', NULL, '2025-02-07 18:07:50', '2025-02-07 18:14:39'),
+(35, 'App\\Models\\User', 4, 'auth_token', 'c89a85d81ef1e454d3a2fcb4c8840f73735ce02cca2157744ed66359717ff6a5', '[\"*\"]', '2025-02-07 19:10:37', NULL, '2025-02-07 19:07:29', '2025-02-07 19:10:37'),
+(36, 'App\\Models\\User', 4, 'auth_token', '286f9a30d00b10adcd7c6589190654fb3c96b89d2d2538dcc9658ca9a87bd74d', '[\"*\"]', '2025-02-09 02:46:17', NULL, '2025-02-09 02:25:54', '2025-02-09 02:46:17'),
+(37, 'App\\Models\\User', 4, 'auth_token', 'f513580a746d6b0f3000a224f520473134ba07f460b0fe7f1e1d452b5beb03fe', '[\"*\"]', '2025-02-09 02:57:41', NULL, '2025-02-09 02:56:48', '2025-02-09 02:57:41'),
+(38, 'App\\Models\\User', 4, 'auth_token', '3389be3f5849c11bf1d1ac0142fa8500637631c8495a23a5508c0b2706b1c1b5', '[\"*\"]', '2025-02-09 03:13:53', NULL, '2025-02-09 03:12:39', '2025-02-09 03:13:53'),
+(39, 'App\\Models\\User', 4, 'auth_token', 'ca1fa23a9b98f42d41e94d89a563f64609cfa53e5ebf63b0d4689339d37dc0e3', '[\"*\"]', '2025-02-09 05:05:41', NULL, '2025-02-09 03:23:54', '2025-02-09 05:05:41'),
+(40, 'App\\Models\\User', 4, 'auth_token', 'cbdd59af581b9824173922834a9e9713862c882f75c4e7b3e1273f73e48707ea', '[\"*\"]', '2025-02-09 05:20:02', NULL, '2025-02-09 05:19:47', '2025-02-09 05:20:02'),
+(41, 'App\\Models\\User', 4, 'auth_token', '05672b223db71976486e6821fa5a532710d480b2dad8a69f6d462412117d4128', '[\"*\"]', '2025-02-10 02:06:58', NULL, '2025-02-10 01:48:03', '2025-02-10 02:06:58');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pins`
 --
 
@@ -1725,7 +1779,16 @@ INSERT INTO `student_attendances` (`id`, `student_id`, `class_id`, `section_id`,
 (4, 38, 9, 11, '2024-12-30', 'present', '17:55:00', NULL, NULL, 1, '2024-12-30 07:10:57', '2024-12-30 07:10:57'),
 (5, 1, 1, 1, '2024-12-30', 'present', '08:00:00', '14:00:00', NULL, 1, '2024-12-30 07:39:15', '2024-12-30 07:39:15'),
 (6, 3, 1, 1, '2024-12-30', 'present', '08:00:00', '14:00:00', NULL, 1, '2024-12-30 07:39:15', '2024-12-30 07:39:15'),
-(7, 4, 1, 1, '2024-12-30', 'present', '08:00:00', '14:00:00', NULL, 1, '2024-12-30 07:39:16', '2024-12-30 07:39:16');
+(7, 4, 1, 1, '2024-12-30', 'present', '08:00:00', '14:00:00', NULL, 1, '2024-12-30 07:39:16', '2024-12-30 07:39:16'),
+(8, 32, 9, 11, '2025-02-09', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-09 02:31:23', '2025-02-09 02:31:23'),
+(9, 33, 9, 11, '2025-02-09', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-09 02:31:23', '2025-02-09 02:31:23'),
+(10, 34, 9, 11, '2025-02-09', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-09 02:31:23', '2025-02-09 02:31:23'),
+(11, 38, 9, 11, '2025-02-09', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-09 02:31:23', '2025-02-09 02:31:23'),
+(12, 32, 9, 11, '2025-02-10', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-10 01:38:57', '2025-02-10 01:38:57'),
+(13, 33, 9, 11, '2025-02-10', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-10 01:38:57', '2025-02-10 01:38:57'),
+(14, 34, 9, 11, '2025-02-10', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-10 01:38:57', '2025-02-10 01:38:57'),
+(15, 38, 9, 11, '2025-02-10', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-10 01:38:57', '2025-02-10 01:38:57'),
+(16, 39, 9, 11, '2025-02-10', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-02-10 01:38:57', '2025-02-10 01:38:57');
 
 -- --------------------------------------------------------
 
@@ -1788,12 +1851,13 @@ INSERT INTO `student_records` (`id`, `user_id`, `my_class_id`, `section_id`, `ad
 (30, 47, 8, 10, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:36', '2024-12-19 21:15:36'),
 (31, 48, 8, 10, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:36', '2024-12-19 21:15:36'),
 (32, 49, 9, 11, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:37', '2024-12-19 21:15:37'),
-(33, 50, 9, 11, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:37', '2024-12-19 21:15:37'),
+(33, 50, 9, 11, NULL, 4, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:37', '2025-02-10 01:29:16'),
 (34, 51, 9, 11, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:37', '2024-12-19 21:15:37'),
 (35, 52, 10, 12, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:38', '2024-12-19 21:15:38'),
 (36, 53, 10, 12, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:38', '2024-12-19 21:15:38'),
 (37, 54, 10, 12, NULL, NULL, NULL, NULL, '2018-2019', NULL, NULL, NULL, 0, NULL, '2024-12-19 21:15:38', '2024-12-19 21:15:38'),
-(38, 57, 9, 11, 'SMART/SEC/2024/542', 9, 1, '1', '2024-2025', '1', NULL, '2024', 0, NULL, '2024-12-26 10:42:55', '2024-12-26 13:44:35');
+(38, 57, 9, 11, 'SMART/SEC/2024/542', 4, 1, '1', '2024-2025', '1', NULL, '2024', 0, NULL, '2024-12-26 10:42:55', '2025-02-06 18:27:29'),
+(39, 58, 9, 11, 'SMART/SEC/2025/125', 4, NULL, NULL, '2024-2025', NULL, NULL, '2025', 0, NULL, '2025-02-10 01:38:22', '2025-02-10 01:38:22');
 
 -- --------------------------------------------------------
 
@@ -1856,7 +1920,8 @@ CREATE TABLE `teacher_attendances` (
 --
 
 INSERT INTO `teacher_attendances` (`id`, `teacher_id`, `date`, `status`, `time_in`, `time_out`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '2024-12-31', 'present', '08:00:00', '14:00:00', NULL, 1, '2024-12-31 08:08:56', '2024-12-31 08:08:56');
+(1, 1, '2024-12-31', 'present', '08:00:00', '14:00:00', NULL, 1, '2024-12-31 08:08:56', '2024-12-31 08:08:56'),
+(2, 1, '2025-01-28', 'present', '07:00:00', '14:00:00', NULL, 1, '2025-01-28 14:45:05', '2025-01-28 14:45:05');
 
 -- --------------------------------------------------------
 
@@ -1983,10 +2048,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `code`, `username`, `user_type`, `dob`, `gender`, `photo`, `phone`, `phone2`, `bg_id`, `state_id`, `lga_id`, `nal_id`, `address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dark Side', 'cj@cj.com', 'FAU10TPFIC', 'cj', 'super_admin', NULL, NULL, 'http://127.0.0.1:8000/storage/uploads/super_admin/FAU10TPFIC/photo.png', NULL, NULL, NULL, NULL, NULL, NULL, 'sudan, Kh', NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', 'g7Y54XJJ2ITQrgN04vHKIdKf4QVHeKNbxSYamX6DCM0kgV8l2BZ0yfquFueZ', NULL, '2024-12-20 16:00:22'),
+(1, 'Dark Side', 'cj@cj.com', 'FAU10TPFIC', 'cj', 'super_admin', NULL, NULL, 'http://127.0.0.1:8000/storage/uploads/super_admin/FAU10TPFIC/photo.png', NULL, NULL, NULL, NULL, NULL, NULL, 'sudan, Kh', NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', 'NGHa4j0pm64aqXVqLNfBMdwo0z6LrorkZtA7Ouc4JwAJ99b7vevIdg6jndWU', NULL, '2024-12-20 16:00:22'),
 (2, 'Admin KORA', 'admin@admin.com', 'DXJOYXWZVR', 'admin', 'admin', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', 'FV03Gil4VVdIXVJtC0M4tapZlEigB1wQ0UjgKGJkLi2tfewMphRCQm5uAJYX', NULL, NULL),
 (3, 'Teacher Chike', 'teacher@teacher.com', '2WGWVPELGD', 'teacher', 'teacher', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', 'Cildg74ZBl8ELM9eiYq5JdzlrcLty6wuUGledXArdhBNfJTO1GDwgt0BBrzA', NULL, NULL),
-(4, 'Parent Kaba', 'parent@parent.com', 'SSUNGGLLLX', 'parent', 'parent', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', '8jjQR4uf86YNdTgWt7ki6mN87UGQAabcvD0v7c3BqeXA9EP8IaZ1HxFYplPH', NULL, NULL),
+(4, 'Parent Kaba', 'parent@parent.com', 'SSUNGGLLLX', 'parent', 'parent', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', '38tdExZ8qOr8hsmhIwvNclQREMjCBlUj1SaQoHLnTnwKetr1TtVQqLCCnWg6', NULL, NULL),
 (5, 'Accountant Jeff', 'accountant@accountant.com', 'IKTCOWQCB4', 'accountant', 'accountant', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$B5DRbtMFUwZ4OdqFSUqayOswHSO/HCVh9DX0iwVGN9M8YyaippeeG', 'wc4w53x3Y1tFf1hRNDNEVSmBYioRcrGCjJNWq6WbSs3T0JobgBIhnNmaNsH0', NULL, NULL),
 (6, 'Admin 1', 'admin1@admin.com', 'U6KYDELFNO', 'admin1', 'admin', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$wOxAonVu4pkWAl17.PG/AOr0LtpxXEMudd9c9eILA./TmBMJc9ouG', '4Zp8oyYJCv', NULL, NULL),
 (7, 'Teacher 1', 'teacher1@teacher.com', '4WWOGVF2OF', 'teacher1', 'teacher', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$72YM0ZnetmshrsryfF0FnuTYieO7uyhB3kgKdwkl79guoj0nrp.mG', '4YeV4fjOWJ', NULL, NULL),
@@ -2031,13 +2096,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `code`, `username`, `user_type`, `do
 (47, 'Abbey Lehner', 'yschuppe@example.net', 'QTGWLT7NBX', 'aisha.runolfsdottir', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$9Lwp/uNuOq0lSiUhIpITa.SHIwAv442rq2zj91QE75O/doj4bxO8u', 'pKMnMf9Cgx', '2024-12-19 21:15:36', '2024-12-19 21:15:36'),
 (48, 'Dr. Retta Mills MD', 'reba87@example.net', 'EX2FXZW6OO', 'precious.ortiz', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$9Lwp/uNuOq0lSiUhIpITa.SHIwAv442rq2zj91QE75O/doj4bxO8u', 'pK8Er0C7iF', '2024-12-19 21:15:36', '2024-12-19 21:15:36'),
 (49, 'Shannon Witting', 'anderson.brandi@example.net', 'FYWFTIMAL1', 'schroeder.abigayle', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WWybxHEkZ4VAY4beliuJDeX4w39K3A47clwPqE6WmgmZfO8JViXUm', 'cIhRHgCWsq', '2024-12-19 21:15:37', '2024-12-19 21:15:37'),
-(50, 'Kali Will', 'zemlak.dereck@example.net', 'LQ6FUA0RLL', 'amparo.bernier', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WWybxHEkZ4VAY4beliuJDeX4w39K3A47clwPqE6WmgmZfO8JViXUm', 'o3WgdLmUVc', '2024-12-19 21:15:37', '2024-12-19 21:15:37'),
+(50, 'Kali Will', 'zemlak.dereck@example.net', 'LQ6FUA0RLL', 'amparo.bernier', 'student', NULL, 'Male', 'http://localhost/global_assets/images/user.png', NULL, NULL, 1, 1, 1, 168, '234 kh -st 12', NULL, '$2y$10$WWybxHEkZ4VAY4beliuJDeX4w39K3A47clwPqE6WmgmZfO8JViXUm', 'o3WgdLmUVc', '2024-12-19 21:15:37', '2025-02-10 01:29:16'),
 (51, 'Dr. Judson Miller', 'rogelio55@example.net', 'FMM516RI8Y', 'sydni.fisher', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WWybxHEkZ4VAY4beliuJDeX4w39K3A47clwPqE6WmgmZfO8JViXUm', 'NCxj16noSi', '2024-12-19 21:15:37', '2024-12-19 21:15:37'),
 (52, 'Alyce Hills', 'gutkowski.chanelle@example.org', 'QXWSJAF2PC', 'lebsack.angelo', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WqGxu8d8EaIVnZ5XUvjtyuPb378kUR7eK0HbzXCcLGE5djRn2KZLm', 'dcXD4DsQW2', '2024-12-19 21:15:38', '2024-12-19 21:15:38'),
 (53, 'Arely Blick', 'mprice@example.com', 'F8YRKILUP5', 'nrogahn', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WqGxu8d8EaIVnZ5XUvjtyuPb378kUR7eK0HbzXCcLGE5djRn2KZLm', 'Wz6VVCnHOc', '2024-12-19 21:15:38', '2024-12-19 21:15:38'),
 (54, 'Damien Herman', 'aletha98@example.com', 'ISJ57QOR1A', 'santino39', 'student', NULL, NULL, 'http://localhost/global_assets/images/user.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WqGxu8d8EaIVnZ5XUvjtyuPb378kUR7eK0HbzXCcLGE5djRn2KZLm', '2DsqM0ndxj', '2024-12-19 21:15:38', '2024-12-19 21:15:38'),
 (55, 'Dark Dark', 'dark@dark.com', 'C1ASXZREP8', 'Smart/STAFF/2024/12/8936', 'teacher', NULL, 'Male', 'http://127.0.0.1:8000/storage/uploads/teacher/C1ASXZREP8/photo.png', '0123456789', '0123456789', 2, 1, 1, 168, 'darkdarkdark', NULL, '$2y$10$7K2ITFPe4KLjnZYmGVsluOa43C7J6/fEMJbMWnpKTQAO/1Y.WvVJi', NULL, '2024-12-22 21:49:20', '2024-12-22 21:49:20'),
-(57, 'Student Class 9', 'student9@student.com', 'RYTGW1RJ5M', 'SMART/SEC/2024/542', 'student', '12/08/2010', 'Male', 'http://127.0.0.1:8000/storage/uploads/student/RYTGW1RJ5M/photo.png', NULL, NULL, 1, 50, 775, 168, 'student class 9', NULL, '$2y$10$2.ZcvRO4fFE2vspc6OMVS.qEBtk7m3wAVuGQ82Iv4m0oL/q5bOZim', NULL, '2024-12-26 10:42:55', '2024-12-26 10:42:55');
+(57, 'Student Class 9', 'student9@student.com', 'RYTGW1RJ5M', 'SMART/SEC/2024/542', 'student', '12/08/2010', 'Male', 'http://127.0.0.1:8000/storage/uploads/student/RYTGW1RJ5M/photo.png', NULL, NULL, 1, 50, 775, 168, 'student class 9', NULL, '$2y$10$2.ZcvRO4fFE2vspc6OMVS.qEBtk7m3wAVuGQ82Iv4m0oL/q5bOZim', NULL, '2024-12-26 10:42:55', '2024-12-26 10:42:55'),
+(58, 'The Nigga One', 'theniggaone@gmail.com', 'XYQE8LIRUH', 'SMART/SEC/2025/125', 'student', '07/16/2009', 'Male', 'http://127.0.0.1:8000/storage/uploads/student/XYQE8LIRUH/photo.png', '0908070605', NULL, 1, 1, 1, 168, 'Chicago', NULL, '$2y$10$vQv8JSI9rLibt939CFnpweCK1iz52jTSzxj0/BPV9WAwVHOuOMbEm', NULL, '2025-02-10 01:38:22', '2025-02-10 01:38:22');
 
 -- --------------------------------------------------------
 
@@ -2188,6 +2254,14 @@ ALTER TABLE `payment_records`
   ADD UNIQUE KEY `payment_records_ref_no_unique` (`ref_no`),
   ADD KEY `payment_records_payment_id_foreign` (`payment_id`),
   ADD KEY `payment_records_student_id_foreign` (`student_id`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indexes for table `pins`
@@ -2438,6 +2512,12 @@ ALTER TABLE `payment_records`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
 -- AUTO_INCREMENT for table `pins`
 --
 ALTER TABLE `pins`
@@ -2489,13 +2569,13 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `student_attendances`
 --
 ALTER TABLE `student_attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `student_records`
 --
 ALTER TABLE `student_records`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -2507,7 +2587,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teacher_attendances`
 --
 ALTER TABLE `teacher_attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `time_slots`
@@ -2531,7 +2611,7 @@ ALTER TABLE `time_table_records`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `user_types`

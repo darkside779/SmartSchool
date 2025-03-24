@@ -26,7 +26,7 @@ class Qs
 
     public static function getAppCode()
     {
-        return self::getSetting('system_title') ?: 'CJ';
+        return self::getSetting('system_title') ?: 'Darkside';
     }
 
     public static function getDefaultUserImage()
@@ -143,7 +143,7 @@ class Qs
 
     public static function userIsAdmin()
     {
-        return Auth::user()->user_type == 'admin';
+        return strtolower(Auth::user()->user_type) === 'admin';
     }
 
     public static function userIsAttendance()
@@ -158,22 +158,22 @@ class Qs
 
     public static function userIsSuperAdmin()
     {
-        return Auth::user()->user_type == 'super_admin';
+        return strtolower(Auth::user()->user_type) === 'super_admin';
     }
 
     public static function userIsStudent()
     {
-        return Auth::user()->user_type == 'student';
+        return strtolower(Auth::user()->user_type) === 'student';
     }
 
     public static function userIsTeacher()
     {
-        return Auth::user()->user_type == 'teacher';
+        return strtolower(Auth::user()->user_type) === 'teacher';
     }
 
     public static function userIsParent()
     {
-        return Auth::user()->user_type == 'parent';
+        return strtolower(Auth::user()->user_type) === 'parent';
     }
 
     public static function userIsStaff()

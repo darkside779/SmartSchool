@@ -9,20 +9,22 @@ use App\Http\Requests\TimeTable\TTRequest;
 use App\Models\Setting;
 use App\Repositories\ExamRepo;
 use App\Repositories\MyClassRepo;
+use App\Repositories\StudentRepo;
 use App\Repositories\TimeTableRepo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class TimeTableController extends Controller
 {
-    protected $tt, $my_class, $exam, $year;
+    protected $tt, $my_class, $exam, $year, $student;
 
-    public function __construct(TimeTableRepo $tt, MyClassRepo $mc, ExamRepo $exam)
+    public function __construct(TimeTableRepo $tt, MyClassRepo $mc, ExamRepo $exam, StudentRepo $student)
     {
         $this->tt = $tt;
         $this->my_class = $mc;
         $this->exam = $exam;
         $this->year = Qs::getCurrentSession();
+        $this->student = $student;
     }
 
     public function index()
@@ -252,5 +254,40 @@ class TimeTableController extends Controller
     {
         $this->tt->deleteRecord($ttr_id);
         return back()->with('flash_success', __('msg.delete_ok'));
+    }
+
+    public function childrenTimetables()
+    {
+        if (!Qs::userIsParent()) {
+            return redirect()->route('dashboard')->with('pop_error', 'Access Denied');
+        }
+
+        $parent_id = auth()->user()->id;
+        
+        // Get all children of the parent
+        $d['children'] = $this->student->getRecord(['my_parent_id' => $parent_id])
+            ->with(['user', 'my_class', 'section'])
+            ->get();
+
+        return view('pages.support_team.timetables.parent.children_timetables', $d);
+    }
+
+    public function childTimetable($student_id)
+    {
+        if (!Qs::userIsParent()) {
+            return redirect()->route('dashboard')->with('pop_error', 'Access Denied');
+        }
+
+        $parent_id = auth()->user()->id;
+        
+        // Get the student record and verify parent relationship
+        $d['student'] = $this->student->getRecord(['my_parent_id' => $parent_id, 'id' => $student_id])
+            ->with(['user', 'my_class', 'section'])
+            ->firstOrFail();
+
+        // Get timetable records for the student's class
+        $d['tt_records'] = $this->tt->getRecord(['my_class_id' => $d['student']->my_class_id]);
+        
+        return view('pages.support_team.timetables.parent.child_timetable', $d);
     }
 }

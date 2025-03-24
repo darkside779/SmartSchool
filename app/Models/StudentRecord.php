@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\User;
+use App\Models\MyClass;
+use App\Models\Section;
+use App\Models\Dorm;
+use App\Models\PaymentRecord;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -37,5 +41,10 @@ class StudentRecord extends Eloquent
     public function dorm()
     {
         return $this->belongsTo(Dorm::class);
+    }
+
+    public function payment_records()
+    {
+        return $this->hasMany(PaymentRecord::class, 'student_id', 'user_id');
     }
 }

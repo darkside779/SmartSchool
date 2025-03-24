@@ -27,7 +27,8 @@ class PaymentController extends Controller
         $this->year = Qs::getCurrentSession();
         $this->student = $student;
 
-        $this->middleware('teamAccount');
+        $this->middleware('teamAccount', ['except' => ['childrenPayments', 'childPaymentShow']]);
+        $this->middleware('auth');
     }
 
     public function index()
@@ -101,19 +102,29 @@ class PaymentController extends Controller
 
     public function pdf_receipts($pr_id)
     {
-        if(!$pr_id) {return Qs::goWithDanger();}
+        if(!$pr_id) { return Qs::goWithDanger(); }
 
         try {
             $d['pr'] = $pr = $this->pay->getRecord(['id' => $pr_id])->with('receipt')->first();
+
+            // Check if user is parent and verify they can access this receipt
+            if (Qs::userIsParent()) {
+                $parent_id = auth()->user()->id;
+                $student = $this->student->getRecord(['my_parent_id' => $parent_id, 'user_id' => $pr->student_id])->first();
+                
+                if (!$student) {
+                    return redirect()->route('dashboard')->with('pop_error', 'Access Denied');
+                }
+            }
+
+            $d['payment'] = $pr->payment;
+            $d['sr'] = $this->student->findByUserId($pr->student_id)->first();
+            $d['s'] = Setting::all()->flatMap(function($s){
+                return [$s->type => $s->description];
+            });
         } catch (ModelNotFoundException $ex) {
             return back()->with('flash_danger', __('msg.rnf'));
         }
-        $d['receipts'] = $pr->receipt;
-        $d['payment'] = $pr->payment;
-        $d['sr'] = $sr =$this->student->findByUserId($pr->student_id)->first();
-        $d['s'] = Setting::all()->flatMap(function($s){
-            return [$s->type => $s->description];
-        });
 
         $pdf_name = 'Receipt_'.$pr->ref_no;
 
@@ -238,5 +249,69 @@ class PaymentController extends Controller
         $this->pay->deleteReceipts(['pr_id' => $id]);
 
         return back()->with('flash_success', __('msg.update_ok'));
+    }
+
+    public function childrenPayments()
+    {
+        if (!Qs::userIsParent()) {
+            return redirect()->route('dashboard')->with('pop_error', 'Access Denied');
+        }
+
+        $parent_id = auth()->user()->id;
+        
+        // Get all children of the parent with their payment records
+        $children = $this->student->getRecord(['my_parent_id' => $parent_id])
+            ->with(['payment_records' => function($query) {
+                $query->with(['payment', 'receipt'])
+                    ->orderBy('created_at', 'desc');
+            }])
+            ->get();
+
+        return view('pages.support_team.payments.parent.children_payments', compact('children'));
+    }
+
+    public function childPaymentShow($student_id)
+    {
+        if (!Qs::userIsParent()) {
+            return redirect()->route('dashboard')->with('pop_error', 'Access Denied');
+        }
+
+        $parent_id = auth()->user()->id;
+        
+        // Get the student record and verify parent relationship
+        $student = $this->student->getRecord(['my_parent_id' => $parent_id, 'id' => $student_id])
+            ->with(['payment_records' => function($query) {
+                $query->with(['payment', 'receipt'])
+                    ->orderBy('year', 'desc')
+                    ->orderBy('created_at', 'desc');
+            }])
+            ->firstOrFail();
+
+        // Get all payment records
+        $payment_records = $student->payment_records;
+
+        // Group payments by year
+        $payments_by_year = $payment_records->groupBy('year');
+
+        // Calculate totals for current year
+        $current_year = Qs::getCurrentSession();
+        $current_payments = $payment_records->where('year', $current_year);
+        
+        $total_fees = $current_payments->sum(function($pr) {
+            return $pr->payment ? $pr->payment->amount : 0;
+        });
+        $total_paid = $current_payments->sum('amt_paid');
+        $total_balance = $total_fees - $total_paid;
+        $payment_status = $total_balance <= 0 ? 'Paid' : 'Outstanding';
+
+        return view('pages.support_team.payments.parent.child_payments', compact(
+            'student',
+            'payments_by_year',
+            'current_year',
+            'total_fees',
+            'total_paid',
+            'total_balance',
+            'payment_status'
+        ));
     }
 }

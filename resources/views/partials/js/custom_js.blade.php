@@ -52,16 +52,37 @@
         })
     }
 
-    function getClassSections(class_id) {
-        let url = "{{ route('sections.get', ['class_id' => ':id']) }}";
+    function getClassSections(class_id, target_selector) {
+        if (!class_id) {
+            let selector = target_selector || '#section_id';
+            $(selector).html('<option value="">Select Section</option>');
+            return;
+        }
+
+        let url = "{{ route('get_class_sections', [':id']) }}";
         url = url.replace(':id', class_id);
         
-        $.get(url, function(data) {
-            let options = '<option value="">Select Section</option>';
-            data.forEach(function(section) {
-                options += `<option value="${section.id}">${section.name}</option>`;
-            });
-            $('#section_id').html(options);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                let selector = target_selector || '#section_id';
+                $(selector).html('<option value="">Loading...</option>');
+            },
+            success: function(data) {
+                let selector = target_selector || '#section_id';
+                let options = '<option value="">Select Section</option>';
+                data.forEach(function(section) {
+                    options += `<option value="${section.id}">${section.name}</option>`;
+                });
+                $(selector).html(options);
+            },
+            error: function() {
+                let selector = target_selector || '#section_id';
+                $(selector).html('<option value="">Error loading sections</option>');
+                console.error('Failed to load sections for class: ' + class_id);
+            }
         });
     }
 
@@ -80,7 +101,7 @@
     $(document).ready(function() {
         // Class change event for sections
         $('#class_id').change(function() {
-            getClassSections($(this).val());
+            getClassSections($(this).val(), '#section_id');
         });
 
         // End date validation

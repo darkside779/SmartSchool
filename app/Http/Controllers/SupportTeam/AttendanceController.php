@@ -102,42 +102,12 @@ class AttendanceController extends Controller
             'teacher_id' => 'required|array',
             'date' => 'required|date',
             'status' => 'required|array',
-            'time_in_hour' => 'required|array',
-            'time_in_minute' => 'required|array',
-            'time_in_ampm' => 'required|array',
-            'time_out_hour' => 'nullable|array',
-            'time_out_minute' => 'nullable|array',
-            'time_out_ampm' => 'nullable|array',
+            'time_in' => 'required|array',
+            'time_out' => 'required|array',
             'remark' => 'nullable|array',
         ]);
 
         foreach($data['teacher_id'] as $k => $teacher_id) {
-            // Format time_in
-            $time_in = null;
-            if (!empty($data['time_in_hour'][$k]) && !empty($data['time_in_minute'][$k]) && !empty($data['time_in_ampm'][$k])) {
-                $hour = $data['time_in_hour'][$k];
-                if ($data['time_in_ampm'][$k] == 'PM' && $hour != 12) {
-                    $hour = $hour + 12;
-                }
-                if ($data['time_in_ampm'][$k] == 'AM' && $hour == 12) {
-                    $hour = '00';
-                }
-                $time_in = sprintf('%02d:%02d:00', $hour, $data['time_in_minute'][$k]);
-            }
-
-            // Format time_out
-            $time_out = null;
-            if (!empty($data['time_out_hour'][$k]) && !empty($data['time_out_minute'][$k]) && !empty($data['time_out_ampm'][$k])) {
-                $hour = $data['time_out_hour'][$k];
-                if ($data['time_out_ampm'][$k] == 'PM' && $hour != 12) {
-                    $hour = $hour + 12;
-                }
-                if ($data['time_out_ampm'][$k] == 'AM' && $hour == 12) {
-                    $hour = '00';
-                }
-                $time_out = sprintf('%02d:%02d:00', $hour, $data['time_out_minute'][$k]);
-            }
-
             TeacherAttendance::updateOrCreate(
                 [
                     'teacher_id' => $teacher_id,
@@ -145,8 +115,8 @@ class AttendanceController extends Controller
                 ],
                 [
                     'status' => $data['status'][$k],
-                    'time_in' => $time_in,
-                    'time_out' => $time_out,
+                    'time_in' => $data['time_in'][$k],
+                    'time_out' => $data['time_out'][$k],
                     'remark' => $data['remark'][$k] ?? null,
                     'created_by' => Auth::user()->id,
                 ]

@@ -67,6 +67,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'timetables'], function(){
             Route::get('/', [TimeTableController::class, 'index'])->name('tt.index');
 
+            // Parent Timetable Routes
+            Route::get('children', [TimeTableController::class, 'childrenTimetables'])->name('timetables.children');
+            Route::get('child/{student_id}', [TimeTableController::class, 'childTimetable'])->name('timetables.child.show');
+
             Route::group(['middleware' => 'teamSA'], function() {
                 Route::post('/', [TimeTableController::class, 'store'])->name('tt.store');
                 Route::put('/{tt}', [TimeTableController::class, 'update'])->name('tt.update');
@@ -102,15 +106,21 @@ Route::group(['middleware' => 'auth'], function () {
 
         /*************** Payments *****************/
         Route::group(['prefix' => 'payments'], function(){
-
-            Route::get('manage/{class_id?}', [PaymentController::class, 'manage'])->name('payments.manage');
-            Route::get('invoice/{id}/{year?}', [PaymentController::class, 'invoice'])->name('payments.invoice');
-            Route::get('receipts/{id}', [PaymentController::class, 'receipts'])->name('payments.receipts');
+            // Parent Payment Routes
+            Route::get('children', [PaymentController::class, 'childrenPayments'])->name('payments.children');
+            Route::get('child/{student_id}', [PaymentController::class, 'childPaymentShow'])->name('payments.child.show');
             Route::get('pdf_receipts/{id}', [PaymentController::class, 'pdf_receipts'])->name('payments.pdf_receipts');
-            Route::post('select_year', [PaymentController::class, 'select_year'])->name('payments.select_year');
-            Route::post('select_class', [PaymentController::class, 'select_class'])->name('payments.select_class');
-            Route::delete('reset_record/{id}', [PaymentController::class, 'reset_record'])->name('payments.reset_record');
-            Route::post('pay_now/{id}', [PaymentController::class, 'pay_now'])->name('payments.pay_now');
+
+            // Admin Payment Routes
+            Route::middleware(['teamAccount'])->group(function() {
+                Route::get('manage/{class_id?}', [PaymentController::class, 'manage'])->name('payments.manage');
+                Route::get('invoice/{id}/{year?}', [PaymentController::class, 'invoice'])->name('payments.invoice');
+                Route::get('receipts/{id}', [PaymentController::class, 'receipts'])->name('payments.receipts');
+                Route::post('select_year', [PaymentController::class, 'select_year'])->name('payments.select_year');
+                Route::post('select_class', [PaymentController::class, 'select_class'])->name('payments.select_class');
+                Route::delete('reset_record/{id}', [PaymentController::class, 'reset_record'])->name('payments.reset_record');
+                Route::post('pay_now/{id}', [PaymentController::class, 'pay_now'])->name('payments.pay_now');
+            });
         });
 
         /*************** Pins *****************/

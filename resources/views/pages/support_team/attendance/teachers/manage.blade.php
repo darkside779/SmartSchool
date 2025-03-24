@@ -5,9 +5,9 @@
 <div class="card">
     <div class="card-header header-elements-inline">
         <h6 class="card-title">Teacher Attendance for {{ $date }}</h6>
-        <div class="header-elements">
+        <!-- <div class="header-elements">
             <button type="button" onclick="makeAllPresent()" class="btn btn-success">Make All Present</button>
-        </div>
+        </div> -->
     </div>
 
     <div class="card-body">
@@ -25,7 +25,7 @@
                             <th>Status</th>
                             <th>Time In</th>
                             <th>Time Out</th>
-                            <th>Remark</th>
+                            <!-- <th>Remark</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,14 +47,14 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="time" name="time_in[]" class="form-control" value="{{ $attendance ? $attendance->time_in : '' }}" required>
+                                    <input type="time" name="time_in[]" class="form-control" value="{{ $attendance ? $attendance->time_in : '07:00' }}" required>
                                 </td>
                                 <td>
-                                    <input type="time" name="time_out[]" class="form-control" value="{{ $attendance ? $attendance->time_out : '' }}">
+                                    <input type="time" name="time_out[]" class="form-control" value="{{ $attendance ? $attendance->time_out : '14:00' }}"required>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <input type="text" name="remark[]" class="form-control" value="{{ $attendance ? $attendance->remark : '' }}">
-                                </td>
+                                </td> -->
                                 <td>
                                     @if($attendance)
                                         <a href="{{ route('attendance.teacher.edit', $attendance->id) }}" class="btn btn-sm btn-info">Edit</a>

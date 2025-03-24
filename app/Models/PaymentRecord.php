@@ -19,7 +19,7 @@ class PaymentRecord extends Eloquent
         return $this->belongsTo(User::class, 'student_id');
     }
 
-    public function receipt()
+    public function receipts()
     {
         return $this->hasMany(Receipt::class, 'pr_id');
     }
