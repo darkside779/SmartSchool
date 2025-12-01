@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            SettingsTableSeeder::class,
             BloodGroupsTableSeeder::class,
             NationalitiesTableSeeder::class,
             StatesTableSeeder::class,
@@ -24,8 +25,7 @@ class DatabaseSeeder extends Seeder
             MyClassesTableSeeder::class,
             SectionsTableSeeder::class,
             StudentRecordsTableSeeder::class,
-            SettingsTableSeeder::class,
-            ParentChildrenSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }
