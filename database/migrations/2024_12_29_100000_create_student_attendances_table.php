@@ -20,11 +20,6 @@ class CreateStudentAttendancesTable extends Migration
             $table->string('remark')->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
-
-            $table->foreign('student_id')->references('id')->on('student_records')->onDelete('cascade');
-            $table->foreign('class_id')->references('id')->on('my_classes')->onDelete('cascade');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

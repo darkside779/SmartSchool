@@ -18,9 +18,6 @@ class CreateTeacherAttendancesTable extends Migration
             $table->string('remark')->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
-
-            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
